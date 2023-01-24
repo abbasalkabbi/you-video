@@ -1,0 +1,70 @@
+/* Start Header */
+header{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    height:56px ;
+    max-width: 100%;
+    padding: 0 16px ;
+}
+.left-section{
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+.left-section img{
+    width: 46%;
+    padding-left:16px ;
+
+}
+.mid-section{
+    display: flex;
+    align-items: center;
+    margin-left:-9%;
+}
+.mid-section form{
+    display: flex;
+    height:40px;
+    width:628px;
+}
+.mid-section form input {
+    width: 100%;
+    border-radius:2px 0 0 2px ;
+    padding: 12px ;
+    font-size: 1.6rem;
+    border:1px solid #d3d3d3;
+    border-right:none;
+    outline:none;
+}
+
+.mid-section button{
+    width:64px;
+    border: 1px solid #d3d3d3;
+    border-radius: 0 2px 2px 0;
+    padding-top:4px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+.mid-section button:hover{
+    border-color: #c6c6c6;
+    background-color: #f0f0f0
+}
+
+.mid-section .mic{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    margin-left: 10px ;
+}
+
+.right-section a{
+    padding-right:18px ;
+    color:black;
+    text-decoration:none;
+}
+/* End Header */
