@@ -1,3 +1,14 @@
 *{
     margin: 0;padding: 0;box-sizing: border-box;
 }
+/* sing in style  */
+.singin{
+    width: 330px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    padding: 10px;
+}
+/* sing in style  End  */
