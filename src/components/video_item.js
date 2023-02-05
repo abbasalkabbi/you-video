@@ -13,7 +13,7 @@ function Video_item(props){
                         {/* info */}
                         <div className="info  d-flex justify-content-between">
                             <p>{props.date}</p>
-                            <p>Views{props.view}</p>
+                            <p>Views:{props.view}</p>
                         </div>
                         {/* info */}
                         <p class="card-text text-break fs-6">{props.name}</p>
