@@ -17,7 +17,7 @@ class Home extends Component{
     // created method fetch data from api
     componentDidMount(){
         let link=this.props.usecontext.videos
-        fetch('http://localhost/you-video/api/videos.php')
+        fetch(`${link}`)
         .then(response => response.json())
         .then(json=>{
             this.setState({
@@ -32,7 +32,7 @@ class Home extends Component{
         if(this.state.finished === true){
             let data=
             this.state.videos.map(video => 
-                <Video_item name={video.name_video} date={video.date_video} view={video.views}/>
+                <Video_item name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
             )
             return data
         }
@@ -43,14 +43,10 @@ class Home extends Component{
     // End mapping
     // render
     render(){
-        let {finished , videos }=this.state
         return(
         <>
         <Header/>
         <div className="container">
-            <h1>{finished}
-            </h1>
-            
         {/* row */}
         <div class="row">
             {/* video */}

@@ -1,6 +1,5 @@
 
 import React from "react";
-import image from '../assets/thumbe.png'
 function Video_item(props){
     return(
 <>
@@ -8,7 +7,7 @@ function Video_item(props){
 <div class="col-sm-6 mb-3 ">
                 
                 <a class="card" href="/singin" style={{'text-decoration':'none' ,'color':'#000'}}>
-                <img src={image} class="card-img-top" alt="..."/>
+                <img src={require(`../assets/${props.img}`)} class="card-img-top" alt="..."/>
                     <div class="card-body">
                         {/* info */}
                         <div className="info  d-flex justify-content-between">

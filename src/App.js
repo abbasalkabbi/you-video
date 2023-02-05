@@ -5,10 +5,12 @@ import Home from './pages/home'
 import Context from "./Context";
 import './App.css';
 import Singn_in from './pages/sign_in';
+import Video from './pages/video';
 function App() {
   const url_base='http://localhost/you-video/api/'
   const url = {
     videos:`${url_base}videos.php`,
+    video:`${url_base}video.php`,
     };
   return (
     <>
@@ -17,6 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/singin' element={<Singn_in />} />
+            <Route path="video/:id" element={<Video />} />
           </Routes>
         </BrowserRouter>
     </Context.Provider>
