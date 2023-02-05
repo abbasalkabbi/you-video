@@ -51,7 +51,7 @@ class Video extends Component{
                             </div>
                             {/* end title */}
                             {/* card body */}
-                            <div className="card-body row"></div>
+                            <div className="card-body row">
                             {/* like list */}
                             <div className="btn-group col-4 like-unlike" role="group" aria-label="Basic example">
                                     <button type="button" className="btn btn-outline-primary"> like</button>

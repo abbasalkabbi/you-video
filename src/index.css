@@ -12,3 +12,49 @@
     padding: 10px;
 }
 /* sing in style  End  */
+.info-count{
+    text-align: end;
+    color: #606060 ;
+}
+.like-unlike{
+    display: flex;
+    align-items: center;
+}
+.like-unlike button{
+    height: 40px;
+}
+.channel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
+.channel p{
+    width: calc(100% - 70px);
+    text-align: end;
+    padding-right: 10px;
+    color: black;
+}
+.channel-img{
+    width: 70px;
+    height: 70px;
+}
+.list-videos .card{
+    text-decoration: none;
+    color: #000;
+    display: flex;
+}
+.list-videos .item-video{
+    height: 100px;
+}
+.list-videos .item-video img {
+    height: 100px; width: 100px;
+}
+@media screen  and (max-width:600px){
+    .list-videos .item-video{
+        height: 300px;
+    }
+    .list-videos .item-video img {
+        height: 200px; width: 100%;
+    }
+}
