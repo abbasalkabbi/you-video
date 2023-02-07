@@ -3,7 +3,7 @@ function Video_(props){
     return(
 <>
  {/* video */}
-                <div className="video  col-sm-12 col-md-9 ">
+                <div className="video  col-sm-12 col-md-12 ">
                         {/* video play */}
                         <div class="ratio ratio-16x9">
                                 <video width="320" height="240" controls>

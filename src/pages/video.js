@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Context from "../Context";
 import Header from "../components/header";
 import Video_ from "../components/video";
+import { Loading } from "../components/Loading";
 class Video extends Component{
     constructor(){
         super();
@@ -58,11 +59,7 @@ class Video extends Component{
             )
         }
         return(
-            <>
-            <h2>
-                loading
-            </h2>
-            </>
+            <Loading/>
         )
     }
     // video End 
@@ -80,6 +77,7 @@ class Video extends Component{
                     {this.video()}
                     {/* video End */}
                 </div>
+                
                 {/* div for video and list  End*/}
             </div>
             {/* container End */}
