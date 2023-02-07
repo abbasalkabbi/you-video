@@ -3,13 +3,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Context from "../Context";
 import Header from "../components/header";
+import Video_ from "../components/video";
 class Video extends Component{
     constructor(){
         super();
         this.state={
             id:0,
             finished:false,
-            video:[]
+            novideo:false,
+            video:[],
+            message:[],
         }
     }
     // End constructor
@@ -17,62 +20,40 @@ class Video extends Component{
     componentDidMount(){
         // get id video
         let  {id}=this.props.params;
-        const link=`${this.props.usecontext.video}?id=1`;
+        const link=`${this.props.usecontext.video}?id=${id}`;
         fetch(`${link}`)
         .then(response => response.json())
         .then(json=>{
+            console.log(json)
+            if(json.status ==false){
+                this.setState({
+                    novideo:true,
+                    finished:true,
+                    message:json,
+                })
+            }else{
             this.setState({
                 video:json,
-                finished:true
+                finished:true,
+                novideo:false
             })
+            }
         })
     }
     // video
     video(){
-        if(this.state.finished === true){
+        if(this.state.finished === true && this.state.novideo ==false){
             let {id_video,id_author,name_video,url_video,url_img,date_video,views}=this.state.video[0];
             return(
+                <Video_ url_video={url_video}  name_video={name_video}  views={views}/>
+            )
+        }if(this.state.finished === true && this.state.novideo ==true){
+            let {message}=this.state.message;
+            return(
                 <>
- {/* video */}
-                <div className="video  col-sm-12 col-md-9 ">
-                        {/* video play */}
-                        <div class="ratio ratio-16x9">
-                                <video width="320" height="240" controls>
-                                    <source src={require(`../assets/${url_video}`)} type="video/mp4"/>
-                                </video>
-                        </div>
-                         {/* video play */}
-                         {/* card body */}
-                        <div className="card">
-                            {/* title */}
-                            <div className="card-header row">
-                                <h5 className="card-title col-8">{name_video}</h5>
-                                <p className="info-count card-text col-4">{views} viwes 10 likes 20 unlike</p>
-                            </div>
-                            {/* end title */}
-                            {/* card body */}
-                            <div className="card-body row">
-                            {/* like list */}
-                            <div className="btn-group col-4 like-unlike" role="group" aria-label="Basic example">
-                                    <button type="button" className="btn btn-outline-primary"> like</button>
-                                    <button type="button" className="btn btn-outline-danger">unlike</button>
-                            </div>
-                            {/*End  like list */}
-                            {/* channel */}
-                            <a className="col-8 channel " href="/l">
-                                    <p className="">
-                                        Abbas Alkbbi
-                                    </p>
-                                    <img src={require('../assets/avatarfull_original.png')} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
-                                </a>
-                            {/*END channel */}
-                            </div>
-                            {/* card body End */}
-                        </div>
-                        {/* end card */}
-                        
-                    </div>
-                    {/* video End*/}
+                <h2>
+                    {message}
+                </h2>
                 </>
             )
         }
