@@ -32,7 +32,7 @@ class Home extends Component{
         if(this.state.finished === true){
             let data=
             this.state.videos.map(video => 
-                <Video_item name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
+                <Video_item id={video.id_video} name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
             )
             return data
         }

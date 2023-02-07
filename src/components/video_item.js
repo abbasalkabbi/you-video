@@ -6,7 +6,7 @@ function Video_item(props){
 {/* video */}
 <div class="col-sm-6 mb-3 ">
                 
-                <a class="card" href="/singin" style={{'text-decoration':'none' ,'color':'#000'}}>
+                <a class="card" href={`/video/${props.id}`} style={{'text-decoration':'none' ,'color':'#000'}}>
                 <img src={require(`../assets/${props.img}`)} class="card-img-top" alt="..."/>
                     <div class="card-body">
                         {/* info */}
