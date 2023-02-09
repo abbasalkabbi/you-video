@@ -26,14 +26,18 @@ function Header(){
                         </li>
                         {/* end home */}
                         {/* singin in */}
-                        <li class="nav-item">
-                        <NavLink
-						to='/singin'
-						className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')}
-						>
-						sing in
-						</NavLink>
-                        </li>
+                        {
+                            localStorage.getItem('id')? "":
+                            <li class="nav-item">
+                            <NavLink
+                            to='/singin'
+                            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')}
+                            >
+                            sing in
+                            </NavLink>
+                            </li>
+                        }
+                        
                         {/* end singin in */}
                     </ul>
                 </div>

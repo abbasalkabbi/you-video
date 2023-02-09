@@ -11,6 +11,7 @@ function App() {
   const url = {
     videos:`${url_base}videos.php`,
     video:`${url_base}video.php`,
+    login:`${url_base}login.php`,
     };
   return (
     <>
