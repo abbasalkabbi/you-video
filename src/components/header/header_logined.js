@@ -1,6 +1,12 @@
 import React from "react";
-
+import { Navigate } from "react-router";
 function Header_logined(){
+    function logout(){
+        localStorage.clear("id")
+        if(!localStorage.getItem('id')){
+            window.location.reload(false);
+        }
+    }
     return(
         <>
          {/* dropdown */}
@@ -27,7 +33,7 @@ function Header_logined(){
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"/></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li ><button class="dropdown-item " onClick={()=>logout()}>Log out</button></li>
                     </ul>
                     {/* ul end  */}
                 </div>
