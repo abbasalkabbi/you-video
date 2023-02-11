@@ -30,9 +30,9 @@ function Video_(props){
                             {/* channel */}
                             <a className="col-8 channel " href="/l">
                                     <p className="">
-                                        Abbas Alkbbi
+                                        {props.author}
                                     </p>
-                                    <img src={require('../assets/avatarfull_original.png')} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
+                                    <img src={require(`../assets/${props.avatar}`)} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
                                 </a>
                             {/*END channel */}
                             </div>

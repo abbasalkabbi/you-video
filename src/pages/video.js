@@ -20,8 +20,8 @@ class Video extends Component{
     // Start componentDidMount
     componentDidMount(){
         // get id video
-        let  {id}=this.props.params;
-        const link=`${this.props.usecontext.video}?id=${id}`;
+        let  {id_video}=this.props.params;
+        const link=`${this.props.usecontext.video}?id_video=${id_video}`;
         fetch(`${link}`)
         .then(response => response.json())
         .then(json=>{
@@ -44,9 +44,9 @@ class Video extends Component{
     // video
     video(){
         if(this.state.finished === true && this.state.novideo ==false){
-            let {id_video,id_author,name_video,url_video,url_img,date_video,views}=this.state.video[0];
+            let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name}=this.state.video[0];
             return(
-                <Video_ url_video={url_video}  name_video={name_video}  views={views}/>
+                <Video_ url_video={url_video}  name_video={name_video}  views={views} author={name} avatar={avatar}/>
             )
         }if(this.state.finished === true && this.state.novideo ==true){
             let {message}=this.state.message;

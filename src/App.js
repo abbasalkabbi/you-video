@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/singin' element={<Singn_in />} />
-            <Route path="video/:id" element={<Video />} />
+            <Route path="video/:id_video" element={<Video />} />
           </Routes>
         </BrowserRouter>
     </Context.Provider>
