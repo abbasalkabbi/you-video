@@ -1,5 +1,9 @@
 import React from "react";
 function Video_(props){
+    function like(id_video,id_visitor){
+        console.log(id_video)
+        console.log(id_visitor)
+    }
     return(
 <>
  {/* video */}
@@ -23,8 +27,8 @@ function Video_(props){
                             <div className="card-body row">
                             {/* like list */}
                             <div className="btn-group col-4 like-unlike" role="group" aria-label="Basic example">
-                                    <button type="button" className="btn btn-outline-primary"> like</button>
-                                    <button type="button" className="btn btn-outline-danger">unlike</button>
+                                    <button type="button" className={props.islike===true?"btn  btn-primary":'btn btn-outline-primary'} onClick={()=>like(props.id_video,localStorage.getItem('id'))}> like</button>
+                                    <button type="button" className={props.isunlike===true?"btn btn-danger":"btn btn-outline-danger"}>unlike</button>
                             </div>
                             {/*End  like list */}
                             {/* channel */}

@@ -41,7 +41,9 @@ if($_GET){
         array_push($video_json,$like_unlike);
         echo json_encode($video_json);
     }else{
-        echo json_encode (get_video($conn,$id_video));
+        $video_json =get_video($conn,$id_video);
+        array_push($video_json,['islike'=>false,"isunlike" => false]);
+        echo json_encode ($video_json);
     }
     
 }else{
