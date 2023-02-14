@@ -12,6 +12,8 @@ function App() {
     videos:`${url_base}videos.php`,
     video:`${url_base}video.php`,
     login:`${url_base}login.php`,
+    like:`${url_base}like.php`,
+    unlike:`${url_base}unlike.php`,
     };
   return (
     <>

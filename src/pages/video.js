@@ -17,6 +17,7 @@ class Video extends Component{
             like:false,
             unlike:false
         }
+
     }
     // End constructor
     // Start componentDidMount
@@ -49,18 +50,20 @@ class Video extends Component{
                 novideo:false,
                 like:json[1].islike,
                 unlike:json[1].isunlike,
+                like_url:this.props.usecontext.like,
+                unlike_url:this.props.usecontext.unlike
             })
             }
             console.log(this.state.like)
         })
     }
     // video
-    video(){
+    video(props){
         if(this.state.finished === true && this.state.novideo ==false){
             let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name}=this.state.video[0];
-            let {like,unlike}=this.state;
+            let {like,unlike,like_url,unlike_url}=this.state;
             return(
-                <Video_  id_video={id_video} url_video={url_video} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={avatar}/>
+                <Video_ like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={url_video} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={avatar}/>
             )
         }if(this.state.finished === true && this.state.novideo ==true){
             let {message}=this.state.message;
