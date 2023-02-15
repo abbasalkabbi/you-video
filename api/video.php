@@ -17,6 +17,15 @@ if($_GET){
         }
     }
     // get_video End 
+    // count like and unlike
+    function count_like_unlike($db,$id_video){
+        $like=mysqli_query($db,"SELECT count(*) as like_count from `like` WHERE id_video=$id_video");
+        $like_data=mysqli_fetch_all($like,MYSQLI_ASSOC);
+        $unlike=mysqli_query($db,"SELECT count(*) as unlike_count from `unlike` WHERE id_video=$id_video");
+        $unlike_data=mysqli_fetch_all($unlike,MYSQLI_ASSOC);
+        return (["like_count"=>$like_data[0]['like_count'],"unlike_count"=>$unlike_data[0]['unlike_count']]);
+    }
+    // count like and unlike
     // if have id_visitor
     if(isset($_GET['id_visitor'])){
         $id_visitor=$_GET['id_visitor'];
@@ -34,16 +43,19 @@ if($_GET){
             return ['islike'=>$is_like,"isunlike" => $is_unlike];
         }
     }
+    
+
     // if have id_visitor End 
     if(isset($_GET['id_video']) && isset($_GET['id_visitor']) ){
         $video_json =get_video($conn,$id_video);
         $like_unlike=get_visitor($conn,$id_video,$id_visitor);
-        array_push($video_json,$like_unlike);
+        array_push($video_json,count_like_unlike($conn,$id_video),$like_unlike);
         echo json_encode($video_json);
     }else{
         $video_json =get_video($conn,$id_video);
-        array_push($video_json,['islike'=>false,"isunlike" => false]);
+        array_push($video_json,count_like_unlike($conn,$id_video),['islike'=>false,"isunlike" => false]);
         echo json_encode ($video_json);
+        
     }
     
 }else{

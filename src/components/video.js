@@ -41,7 +41,7 @@ class Video_  extends Component{
         )
     }
     render(){
-        let {url_video,name_video,views,avatar,id_video,author}=this.props
+        let {url_video,name_video,views,avatar,id_video,author,like_count,unlike_count}=this.props
         let {islike,isunlike}=this.state
         return(
             <>
@@ -59,7 +59,7 @@ class Video_  extends Component{
                                         {/* title */}
                                         <div className="card-header row">
                                             <h5 className="card-title col-8">{name_video}</h5>
-                                            <p className="info-count card-text col-4">{views} viwes 10 likes 20 unlike</p>
+                                            <p className="info-count card-text col-4">{views} viwes {like_count}likes  {unlike_count}unlike</p>
                                         </div>
                                         {/* end title */}
                                         {/* card body */}
