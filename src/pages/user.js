@@ -7,6 +7,7 @@ class User extends Component{
     constructor(){
         super();
     }
+    
     // render
     render(){
         let  {id_user}=this.props.params;
