@@ -2,7 +2,11 @@ import React from "react";
 import { useContext ,Component} from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/header";
+import User_card from "../components/user_card";
 import Context from "../Context";
+import { Loading } from "../components/Loading";
+import Video_item from "../components/video_item";
+
 class User extends Component{
     constructor(){
         super();
@@ -42,12 +46,46 @@ class User extends Component{
             })
         })
     }
+    mapping(){
+        let {finished_videos,finished_info}=this.state
+        if(finished_videos === false || finished_info === false){
+            return (
+                <Loading/>
+            )
+        }else if(finished_info ===true & finished_videos === false){
+            return(
+                <User_card/>
+            )
+        }
+        if(finished_videos === true || finished_info === true){
+            let data=
+            this.state.videos.map(video => 
+                <Video_item id={video.id_video} name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
+            )
+            return (<>
+                    <div className="row">
+                    <User_card/>
+                    </div>
+                    <div className="row ">
+                    <h2 className=" text-center mb-5 text-bg-light p-3 fade show">Videos Of {this.state.name}</h2>
+                    {data}
+                    </div>
+                    </>
+                )
+        }
+    }
     render(){
         let  {id_user}=this.props.params;
         return(
             <>
             <Header/>
-            Hi From user{this.state.name}
+            {/* container */}
+            <div className="container">
+               {/* row */}
+                    {this.mapping()}
+               {/* row End */}
+            </div>
+            {/* container End */}
             </>
         )
     }
