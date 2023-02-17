@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { NavLink } from "react-router-dom";
 class Video_  extends Component{
     constructor(){
         super();
@@ -41,7 +41,7 @@ class Video_  extends Component{
         )
     }
     render(){
-        let {url_video,name_video,views,avatar,id_video,author,like_count,unlike_count}=this.props
+        let {id_author,url_video,name_video,views,avatar,id_video,author,like_count,unlike_count}=this.props
         let {islike,isunlike}=this.state
         return(
             <>
@@ -71,12 +71,15 @@ class Video_  extends Component{
                                         </div>
                                         {/*End  like list */}
                                         {/* channel */}
-                                        <a className="col-8 channel " href="/l">
-                                                <p className="">
-                                                    {author}
-                                                </p>
-                                                <img src={require(`../assets/${avatar}`)} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
-                                            </a>
+                                        <NavLink
+                                        to={`/user/${id_author}`}
+                                        className='col-8 channel'
+                                        >
+                                            <p className="">
+                                                    { author}
+                                            </p>
+                                            <img src={require(`../assets/${avatar}`)} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
+                                        </NavLink>
                                         {/*END channel */}
                                         </div>
                                         {/* card body End */}

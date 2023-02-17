@@ -81,9 +81,9 @@ class User extends Component{
             <Header/>
             {/* container */}
             <div className="container">
-               {/* row */}
+               {/* mapping */}
                     {this.mapping()}
-               {/* row End */}
+               {/* mapping End */}
             </div>
             {/* container End */}
             </>

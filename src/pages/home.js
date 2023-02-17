@@ -20,6 +20,7 @@ class Home extends Component{
         fetch(`${link}`)
         .then(response => response.json())
         .then(json=>{
+            console.log(json)
             this.setState({
                 videos:json,
                 finished:true
@@ -30,6 +31,7 @@ class Home extends Component{
     // mapping
     mapping(){
         if(this.state.finished === true){
+            // console.log(this.state.videos[0].id_author)
             let data=
             this.state.videos.map(video => 
                 <Video_item id={video.id_video} name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
