@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router";
+import { NavLink } from "react-router-dom";
 function Header_logined(){
     function logout(){
         localStorage.clear("id")
@@ -30,7 +30,14 @@ function Header_logined(){
                     {/* end Avatar  */}
                     {/* ul */}
                     <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu-sm-start">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li>
+                            <NavLink
+                            to={`/user/${localStorage.getItem('id')}`}
+                            className='dropdown-item'
+                            >
+                                My Profile
+                            </NavLink>
+                        </li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"/></li>
                         <li ><button class="dropdown-item " onClick={()=>logout()}>Log out</button></li>
