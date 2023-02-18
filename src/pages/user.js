@@ -54,7 +54,7 @@ class User extends Component{
             )
         }else if(finished_info ===true & finished_videos === false){
             return(
-                <User_card/>
+                <User_card name={this.state.name} avatar={this.state.avatar}/>
             )
         }
         if(finished_videos === true || finished_info === true){
@@ -64,7 +64,7 @@ class User extends Component{
             )
             return (<>
                     <div className="row">
-                    <User_card/>
+                    <User_card  name={this.state.name} avatar={this.state.avatar} />
                     </div>
                     <div className="row ">
                     <h2 className=" text-center mb-5 text-bg-light p-3 fade show">Videos Of {this.state.name}</h2>
