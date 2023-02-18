@@ -9,6 +9,17 @@ function User_card(props){
         <p className="card-text">{props.name}</p>
     </div>
 </div>
+{/* info */}
+<div class="card col-sm-12 col-md-8 mb-3">
+    <div class="card-header">
+        Info Of {props.name}
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">About : {props.about}</li>
+        <li class="list-group-item">Date : {props.date}</li>
+    </ul>
+</div>
+{/* info End */}
 </>
     )
 

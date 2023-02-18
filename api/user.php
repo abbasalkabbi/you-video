@@ -5,7 +5,7 @@ if($_GET){
     if(isset($_GET['id_user'])){
         $id_user=$_GET['id_user'];
         // 
-        $user_query=mysqli_query($conn,"SELECT  `name`,`avatar` FROM `user` ");
+        $user_query=mysqli_query($conn,"SELECT  `name`,`avatar`,`about`,`date` FROM `user` ");
         $user_fetch= mysqli_fetch_all($user_query,MYSQLI_ASSOC);
         echo json_encode($user_fetch);
         

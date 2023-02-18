@@ -13,6 +13,8 @@ class User extends Component{
         this.state={
             name:'',
             avatar:'',
+            about:'',
+            date:'',
             videos:'',
             finished_info:false,
             finished_videos:false,
@@ -31,6 +33,8 @@ class User extends Component{
             this.setState({
                 name:json[0].name,
                 avatar:json[0].avatar,
+                about:json[0].about,
+                date:json[0].date,
                 finished_info:true,
             })
         })
@@ -47,14 +51,14 @@ class User extends Component{
         })
     }
     mapping(){
-        let {finished_videos,finished_info}=this.state
+        let {finished_videos,finished_info,name,avatar,about,date}=this.state
         if(finished_videos === false || finished_info === false){
             return (
                 <Loading/>
             )
         }else if(finished_info ===true & finished_videos === false){
             return(
-                <User_card name={this.state.name} avatar={this.state.avatar}/>
+                <User_card name={name} avatar={avatar} about={about} date={date}/>
             )
         }
         if(finished_videos === true || finished_info === true){
@@ -64,7 +68,7 @@ class User extends Component{
             )
             return (<>
                     <div className="row">
-                    <User_card  name={this.state.name} avatar={this.state.avatar} />
+                    <User_card name={name} avatar={avatar} about={about} date={date}/>
                     </div>
                     <div className="row ">
                     <h2 className=" text-center mb-5 text-bg-light p-3 fade show">Videos Of {this.state.name}</h2>
@@ -75,7 +79,6 @@ class User extends Component{
         }
     }
     render(){
-        let  {id_user}=this.props.params;
         return(
             <>
             <Header/>
