@@ -10,7 +10,7 @@ function Header_guest(){
             Login
         </NavLink>
         <NavLink
-            to='/singin'
+            to='/register'
             className="btn btn-primary me-3"
             >
             Sign up for free
