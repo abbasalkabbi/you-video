@@ -8,6 +8,7 @@ import Singn_in from './pages/sign_in';
 import Video from './pages/video';
 import User from './pages/user';
 import Register from './pages/register';
+import Upload from './pages/upload';
 function App() {
   const url_base='http://localhost/you-video/api/'
   const url = {
@@ -19,6 +20,7 @@ function App() {
     user_videos:`${url_base}user_videos.php`,
     like:`${url_base}like.php`,
     unlike:`${url_base}unlike.php`,
+    upload:`${url_base}upload.php`,
     assets:`${url_base}assets/`
     };
   return (
@@ -30,6 +32,7 @@ function App() {
             <Route path='/singin' element={<Singn_in />} />
             <Route path='/register' element={<Register/>} />
             <Route path="video/:id_video" element={<Video />} />
+            <Route path="upload" element={<Upload/>} />
             <Route path="user/:id_user" element={<User />} />
           </Routes>
         </BrowserRouter>
