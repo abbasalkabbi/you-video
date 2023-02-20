@@ -26,8 +26,9 @@ if($_POST){
             // if logined
             while($obj = mysqli_fetch_object($login)){
                 $id= $obj -> id; //hendle Unique_id
+                $avatar= $obj -> avatar; //hendle Unique_id
             }
-            echo json_encode(['status'=>true,"message" => "successful","id"=>$id]);
+            echo json_encode(['status'=>true,"message" => "successful","id"=>$id,'avatar'=>"$avatar"]);
         }else{
             // if input is wrong
             echo json_encode(['status'=>false,"message" => "Input is not wrong"]);

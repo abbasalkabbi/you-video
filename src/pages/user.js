@@ -18,6 +18,7 @@ class User extends Component{
             videos:'',
             finished_info:false,
             finished_videos:false,
+            assets:''
         }
     }
 
@@ -36,6 +37,7 @@ class User extends Component{
                 about:json[0].about,
                 date:json[0].date,
                 finished_info:true,
+                assets:this.props.usecontext.assets
             })
         })
         // get videos
@@ -47,28 +49,29 @@ class User extends Component{
             this.setState({
                 videos:json,
                 finished_videos:true,
+                assets:this.props.usecontext.assets
             })
         })
     }
     mapping(){
-        let {finished_videos,finished_info,name,avatar,about,date}=this.state
+        let {finished_videos,finished_info,name,avatar,about,date,assets}=this.state
         if(finished_videos === false || finished_info === false){
             return (
                 <Loading/>
             )
         }else if(finished_info ===true & finished_videos === false){
             return(
-                <User_card name={name} avatar={avatar} about={about} date={date}/>
+                <User_card name={name} avatar={`${assets}${avatar}`} about={about} date={date}/>
             )
         }
         if(finished_videos === true || finished_info === true){
             let data=
             this.state.videos.map(video => 
-                <Video_item id={video.id_video} name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
+                <Video_item id={video.id_video} name={video.name_video} img={`${assets}${video.url_img}`} date={video.date_video} view={video.views}/>
             )
             return (<>
                     <div className="row">
-                    <User_card name={name} avatar={avatar} about={about} date={date}/>
+                    <User_card name={name} avatar={`${this.state.assets}${avatar}`} about={about} date={date}/>
                     </div>
                     <div className="row ">
                     <h2 className=" text-center mb-5 text-bg-light p-3 fade show">Videos Of {this.state.name}</h2>

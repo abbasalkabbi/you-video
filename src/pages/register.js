@@ -13,6 +13,7 @@ class Register  extends  Component{
             password:'',
             status:'',
             id:"",
+            avatar:'',
             info:'',
         }
     }
@@ -37,6 +38,7 @@ class Register  extends  Component{
             info: result.data.message,
             status:result.data.status,
             id:result.data.id,
+            avatar:result.data.avatar,
             })
         }
             )
@@ -53,6 +55,7 @@ class Register  extends  Component{
         {
             if(this.state.info=='successful'){
                 localStorage.setItem('id',this.state.id)
+                localStorage.setItem('avatar',this.state.avatar)
                 if(localStorage.getItem('id')){
                 return(
                 <Navigate replace to="/" />
@@ -71,7 +74,7 @@ class Register  extends  Component{
             <form className="mt-1">
                 <div className="card bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                     <div className="card-body  p-5">
-                        <h2 className="text-uppercase text-center mb-5"> Register {name}</h2>
+                        <h2 className="text-uppercase text-center mb-5"> Register</h2>
                         {this.error()}
                          {/* email */}
                         <div className="mb-3">

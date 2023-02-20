@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-function Header_logined(){
+
+function Header_logined(props){
     function logout(){
         localStorage.clear("id")
         if(!localStorage.getItem('id')){
@@ -20,7 +21,7 @@ function Header_logined(){
                         aria-expanded="false"
                     >
                         <img
-                            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                            src={props.url_img}
                             class="rounded-circle"
                             height="25"
                             alt="Black and White Portrait of a Man"

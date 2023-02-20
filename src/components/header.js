@@ -1,9 +1,10 @@
 import React from 'react';
 import './header.css'
-import logo from "../images/youtube-logo.png"
 import { Outlet,NavLink } from "react-router-dom";
 import Header_logined from './header/header_logined';
 import Header_guest from './header/header_guest';
+import {useContext } from "react";
+import Context from "../Context";
 function Header(){
     return(
         <>
@@ -43,7 +44,7 @@ function Header(){
             {/* Right */}
             <div class="d-flex align-items-center">
                 {
-                    localStorage.getItem('id')?<Header_logined/>
+                    localStorage.getItem('id')?<Header_logined url_img={`${useContext(Context).assets}${localStorage.getItem('avatar')}`}/>
 
                     :<Header_guest/>
                 }

@@ -18,6 +18,7 @@ class Video extends Component{
             like_count:0,
             unlike:false,
             unlike_count:false,
+            assets:''
         }
 
     }
@@ -43,7 +44,7 @@ class Video extends Component{
                     novideo:true,
                     finished:true,
                     message:json,
-                    
+                    assets:this.props.usecontext.assets
                 })
             }else{
             this.setState({
@@ -56,18 +57,18 @@ class Video extends Component{
                 unlike:json[2].isunlike,
                 like_url:this.props.usecontext.like,
                 unlike_url:this.props.usecontext.unlike,
+                assets:this.props.usecontext.assets
             })
             }
-            console.log(this.state.like)
         })
     }
     // video
     video(props){
         if(this.state.finished === true && this.state.novideo ==false){
             let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name}=this.state.video[0];
-            let {like,unlike,like_count,unlike_count,like_url,unlike_url}=this.state;
+            let {like,unlike,like_count,unlike_count,like_url,unlike_url,assets}=this.state;
             return(
-                <Video_  id_author={id_author} unlike_count={unlike_count} like_count={like_count} like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={url_video} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={avatar}/>
+                <Video_  id_author={id_author} unlike_count={unlike_count} like_count={like_count} like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={`${assets}${url_video}`} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={`${assets}${avatar}`}/>
             )
         }if(this.state.finished === true && this.state.novideo ==true){
             let {message}=this.state.message;

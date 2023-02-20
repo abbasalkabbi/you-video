@@ -11,7 +11,7 @@ class Home extends Component{
         this.state={
             videos:[],
             finished:false,
-            
+            assets:''
         }
     }
     // created method fetch data from api
@@ -23,7 +23,8 @@ class Home extends Component{
             console.log(json)
             this.setState({
                 videos:json,
-                finished:true
+                finished:true,
+                assets:this.props.usecontext.assets
             })
         })
     }
@@ -34,7 +35,7 @@ class Home extends Component{
             // console.log(this.state.videos[0].id_author)
             let data=
             this.state.videos.map(video => 
-                <Video_item id={video.id_video} name={video.name_video} img={video.url_img} date={video.date_video} view={video.views}/>
+                <Video_item id={video.id_video} name={video.name_video} img={`${this.state.assets}${video.url_img}`} date={video.date_video} view={video.views}/>
             )
             return data
         }

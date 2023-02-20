@@ -11,6 +11,7 @@ class Singn_in  extends  Component{
             password:'',
             status:'',
             id:"",
+            avatar:'',
             info:'',
         }
     }
@@ -32,6 +33,7 @@ class Singn_in  extends  Component{
             info: result.data.message,
             status:result.data.status,
             id:result.data.id,
+            avatar:result.data.avatar,
             })
             )
     }
@@ -46,6 +48,7 @@ class Singn_in  extends  Component{
         {
             if(this.state.info=='successful'){
                 localStorage.setItem('id',this.state.id)
+                localStorage.setItem('avatar',this.state.avatar)
                 if(localStorage.getItem('id')){
                 return(
                 <Navigate replace to="/" />

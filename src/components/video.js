@@ -1,17 +1,20 @@
-import React, { Component } from "react";
+import React, { Component ,useContext} from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../Context";
 class Video_  extends Component{
     constructor(){
         super();
         this.state={
             islike:false,
             isunlike:false,
+            assets:''
         }
     }
     componentDidMount(){
         this.setState({
             islike:this.props.islike,
             isunlike:this.props.isunlike,
+            assets:this.props.usecontext.assets
         })
     }
     like(id_video,id_visitor){
@@ -42,7 +45,7 @@ class Video_  extends Component{
     }
     render(){
         let {id_author,url_video,name_video,views,avatar,id_video,author,like_count,unlike_count}=this.props
-        let {islike,isunlike}=this.state
+        let {islike,isunlike,assets}=this.state
         return(
             <>
              {/* video */}
@@ -50,7 +53,7 @@ class Video_  extends Component{
                                     {/* video play */}
                                     <div class="ratio ratio-16x9">
                                             <video width="320" height="240" controls>
-                                                <source src={require(`../assets/${url_video}`)} type="video/mp4"/>
+                                                <source src={url_video} type="video/mp4"/>
                                             </video>
                                     </div>
                                      {/* video play */}
@@ -78,7 +81,7 @@ class Video_  extends Component{
                                             <p className="">
                                                     { author}
                                             </p>
-                                            <img src={require(`../assets/${avatar}`)} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
+                                            <img src={`${avatar}`} class="channel-img  img-thumbnail " alt="..." style={{'width':'100px'}}/>
                                         </NavLink>
                                         {/*END channel */}
                                         </div>
@@ -97,5 +100,5 @@ class Video_  extends Component{
 export default (props)=>
 <Video_
 {...props}
-
+usecontext={useContext(Context)}
 />;

@@ -19,6 +19,7 @@ function App() {
     user_videos:`${url_base}user_videos.php`,
     like:`${url_base}like.php`,
     unlike:`${url_base}unlike.php`,
+    assets:`${url_base}assets/`
     };
   return (
     <>
