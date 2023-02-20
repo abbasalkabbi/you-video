@@ -9,12 +9,14 @@ class Upload extends Component{
         this.state={
             name:'',
             video:'',
+            image:'',
             info:'',
         }
-        this.onFileChange = this.onFileChange.bind(this);
+        this.video_uplaod = this.video_uplaod.bind(this);
+        this.img_upload = this.img_upload.bind(this);
     }
-     // upload image
-    onFileChange(e) {
+     // upload Video
+    video_uplaod(e) {
     let files = e.target.files;
     let fileReader = new FileReader();
     fileReader.readAsDataURL(files[0]);
@@ -24,13 +26,25 @@ class Upload extends Component{
         })
     }
 }
+// upload img
+    img_upload(e){
+        let files = e.target.files;
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(files[0]);
+    fileReader.onload = (event) => {
+        this.setState({
+            image: event.target.result,
+        })
+    }
+    }
 handleFormSubmit( event ) {
     event.preventDefault();
     const upload_url=this.props.usecontext.upload
     console.log(upload_url)
     let add_post={
         name:this.state.name,
-        video: this.state.video
+        video: this.state.video,
+        image: this.state.image,
     }
     axios({
         method: 'post',
@@ -43,7 +57,7 @@ handleFormSubmit( event ) {
 
 }
     render(){
-        let{name ,video}=this.state
+        let{name }=this.state
         return(
             <>
             <Header/>
@@ -64,8 +78,13 @@ handleFormSubmit( event ) {
                                {/* End name */}
                                 {/* upload video */}
                                 <div class="mb-5">
-                                    <label for="video" class="form-label"> </label>
-                                    <input class="form-control" type="file" id="formFile"  onChange={this.onFileChange}/>
+                                    <label for="video" class="form-label"> Video</label>
+                                    <input class="form-control" type="file" id="formFile"  onChange={this.video_uplaod}/>
+                                </div>
+                                {/* upload thumbe */}
+                                <div class="mb-5">
+                                    <label for="thumbe" class="form-label"> thumbe </label>
+                                    <input class="form-control" type="file" id="formFile"  onChange={this.img_upload}/>
                                 </div>
                                 {/* addpost Button */}
                                 <div class="text-center text-lg-start mt-4 pt-2">
