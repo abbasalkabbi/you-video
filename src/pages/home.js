@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext ,Component} from "react";
 import Header from '../components/header'
-import image from '../assets/thumbe.png'
 import Video_item from "../components/video_item";
 import Context from "../Context";
 import { Loading } from "../components/Loading";
