@@ -3,63 +3,68 @@ require"./config.php";
 
 if($_GET){
     $id_video=$_GET['id_video'];
-    function get_video($db,$id_video){
-        // get all links
-        $video=mysqli_query($db,"SELECT 
-        `videos`.* , `user`.`avatar` , `user`.`id` , `user`.`name` FROM `user` 
-        LEFT JOIN `videos` 
-        ON `videos`.`id_author` = `user`.`id` AND videos.id_video=$id_video");
-        $data_video= mysqli_fetch_all($video,MYSQLI_ASSOC);
-        if($data_video){
-            return $data_video;
-        }else{
-            return json_encode(['status'=>false,"message" => "No Video has This id $id"]);
+    $is_like=false;
+    $is_unlike=false;
+    // get video
+    $video_query=mysqli_query($conn,"SELECT * FROM `videos` WHERE id_video=$id_video ");
+    if(mysqli_num_rows($video_query)){
+        while($video = mysqli_fetch_object($video_query)){
+            $id_author=$video ->id_author; //get id_author
+            $video_name=$video ->name_video; //get name
+            $url_video=$video->url_video; //get url_video
+            $thumbe_video=$video ->url_img; //get url_img
+            $date_video=$video->date_video; //get date_video
+            $views_video=$video ->views; //get date_video
         }
     }
-    // get_video End 
-    // count like and unlike
-    function count_like_unlike($db,$id_video){
-        $like=mysqli_query($db,"SELECT count(*) as like_count from `like` WHERE id_video=$id_video");
-        $like_data=mysqli_fetch_all($like,MYSQLI_ASSOC);
-        $unlike=mysqli_query($db,"SELECT count(*) as unlike_count from `unlike` WHERE id_video=$id_video");
-        $unlike_data=mysqli_fetch_all($unlike,MYSQLI_ASSOC);
-        return (["like_count"=>$like_data[0]['like_count'],"unlike_count"=>$unlike_data[0]['unlike_count']]);
+    // end get video
+    // get author info
+    $author_query=mysqli_query($conn,"SELECT * FROM `user`  WHERE id=$id_author");
+    if(mysqli_num_rows($author_query)){
+        while($author = mysqli_fetch_object($author_query)){
+            $author_name=$author -> name; // get author name
+            $author_avatar=$author -> avatar; // get author avatar
+        }
     }
-    // count like and unlike
-    // if have id_visitor
+    // get author info End
+    // count like
+    $like_count=mysqli_fetch_all(mysqli_query($conn,"SELECT count(*) as like_count from `like` WHERE id_video=$id_video"),MYSQLI_ASSOC);
+    $likes=$like_count[0]['like_count'];
+    // count like End 
+    // count like
+    $unlike_count=mysqli_fetch_all(mysqli_query($conn,"SELECT count(*) as unlike_count from `unlike` WHERE id_video=$id_video"),MYSQLI_ASSOC);
+    $unlikes=$unlike_count[0]['unlike_count'];
+    // count like End 
     if(isset($_GET['id_visitor'])){
+        // if id_visitor
         $id_visitor=$_GET['id_visitor'];
-        function get_visitor($db,$id_video,$id_visitor){
-            $is_like=false;
-            $is_unlike=false;
-            $like=mysqli_query($db,"SELECT * FROM `like` WHERE  id_author=$id_visitor AND  id_video=$id_video");
-            if(mysqli_num_rows($like)){
-                $is_like=true;
-            }
-            $unlike=mysqli_query($db,"SELECT * FROM `unlike` WHERE  id_author=$id_visitor AND  id_video=$id_video");
-            if(mysqli_num_rows($unlike)){
-                $is_unlike=true;
-            }
-            return ['islike'=>$is_like,"isunlike" => $is_unlike];
+        $like=mysqli_query($conn,"SELECT * FROM `like` WHERE  id_author=$id_visitor AND  id_video=$id_video");
+        if(mysqli_num_rows($like)){
+            $is_like=true;
+        }
+        $unlike=mysqli_query($conn,"SELECT * FROM `unlike` WHERE  id_author=$id_visitor AND  id_video=$id_video");
+        if(mysqli_num_rows($unlike)){
+            $is_unlike=true;
         }
     }
-    
-
-    // if have id_visitor End 
-    if(isset($_GET['id_video']) && isset($_GET['id_visitor']) ){
-        $video_json =get_video($conn,$id_video);
-        $like_unlike=get_visitor($conn,$id_video,$id_visitor);
-        array_push($video_json,count_like_unlike($conn,$id_video),$like_unlike);
-        echo json_encode($video_json);
-    }else{
-        $video_json =get_video($conn,$id_video);
-        array_push($video_json,count_like_unlike($conn,$id_video),['islike'=>false,"isunlike" => false]);
-        echo json_encode ($video_json);
-        
-    }
-    
+    echo json_encode([
+    'status'=>true,
+    'id_video'=>$id_video,
+    'id_author'=>$id_author,
+    'name_video'=>$video_name,
+    'url_video'=>$url_video,
+    'url_img'=>$thumbe_video,
+    'date_video'=>$date_video,
+    'views'=>$views_video,
+    'avatar'=>$author_avatar,
+    'name'=>$author_name,
+    'like_count'=>$likes,
+    'unlike_count'=>$unlikes,
+    'like'=>$is_like,
+    'unlike'=>$is_unlike,
+    ]);
 }else{
-    echo json_encode(['status'=>false,"message" => "There is Not Video"]);
+
 }
 
 

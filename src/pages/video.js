@@ -51,10 +51,6 @@ class Video extends Component{
                 video:json,
                 finished:true,
                 novideo:false,
-                like:json[2].islike,
-                like_count:json[1].like_count,
-                unlike_count:json[1].unlike_count,
-                unlike:json[2].isunlike,
                 like_url:this.props.usecontext.like,
                 unlike_url:this.props.usecontext.unlike,
                 assets:this.props.usecontext.assets
@@ -65,8 +61,8 @@ class Video extends Component{
     // video
     video(props){
         if(this.state.finished === true && this.state.novideo ==false){
-            let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name}=this.state.video[0];
-            let {like,unlike,like_count,unlike_count,like_url,unlike_url,assets}=this.state;
+            let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name,like,unlike,like_count,unlike_count}=this.state.video;
+            let {like_url,unlike_url,assets}=this.state;
             return(
                 <Video_  id_author={id_author} unlike_count={unlike_count} like_count={like_count} like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={`${assets}${url_video}`} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={`${assets}${avatar}`}/>
             )
