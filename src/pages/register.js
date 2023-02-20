@@ -8,6 +8,7 @@ class Register  extends  Component{
     constructor(){
         super();
         this.state={
+            name:'',
             email:'',
             password:'',
             status:'',
@@ -18,23 +19,28 @@ class Register  extends  Component{
     // handleFormSubmit
     handleFormSubmit(event){
         event.preventDefault();
-        const url_login=this.props.usecontext.login;
-        let login_data={
+        const url_register=this.props.usecontext.register;
+        let register_data={
+            name: this.state.name,
             email: this.state.email,
             password:this.state.password,
         }
         axios({
             method: 'post',
-            url: `${url_login}`,
+            url: `${url_register}`,
             headers: { 'content-type': 'application/json' },
-            data: login_data
+            data: register_data
         })
-        .then(result => this.setState({
+        .then(result =>
+            { console.log(result)
+            this.setState({
             info: result.data.message,
             status:result.data.status,
             id:result.data.id,
             })
+        }
             )
+        
     }
     error(){
         if(this.state.status ===false){
@@ -57,7 +63,7 @@ class Register  extends  Component{
     }
     // handleFormSubmit End 
     render(){
-        let {email,password}=this.state
+        let {name,email,password}=this.state
     return(
         
         <div className="container d-flex justify-content-center ">
@@ -65,8 +71,17 @@ class Register  extends  Component{
             <form className="mt-1">
                 <div className="card bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                     <div className="card-body  p-5">
-                        <h2 className="text-uppercase text-center mb-5"> Register</h2>
+                        <h2 className="text-uppercase text-center mb-5"> Register {name}</h2>
                         {this.error()}
+                         {/* email */}
+                        <div className="mb-3">
+                            <label for="fullname" className="form-label">Full Name</label>
+                            <input type="text" className="form-control" id="fullname" aria-describedby="emailHelp"
+                            onChange={e=>this.setState({name:e.target.value})}
+                            value={name}
+                            />
+                        </div>
+                        {/* End Email */}
                         {/* email */}
                         <div className="mb-3">
                             <label for="exampleInputEmail1" className="form-label">Email address</label>

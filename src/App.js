@@ -14,6 +14,7 @@ function App() {
     videos:`${url_base}videos.php`,
     video:`${url_base}video.php`,
     login:`${url_base}login.php`,
+    register:`${url_base}register.php`,
     user:`${url_base}user.php`,
     user_videos:`${url_base}user_videos.php`,
     like:`${url_base}like.php`,
