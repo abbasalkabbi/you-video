@@ -11,6 +11,7 @@ class Upload extends Component{
             video:'',
             image:'',
             info:'',
+            image_status:false,
         }
         this.video_uplaod = this.video_uplaod.bind(this);
         this.img_upload = this.img_upload.bind(this);
@@ -32,8 +33,10 @@ class Upload extends Component{
     let fileReader = new FileReader();
     fileReader.readAsDataURL(files[0]);
     fileReader.onload = (event) => {
+        console.log(fileReader.result)
         this.setState({
             image: event.target.result,
+            image_status:true,
         })
     }
     }
@@ -54,7 +57,20 @@ handleFormSubmit( event ) {
     })
     .then(result => console.log(result)
         )
-
+}
+preview(){
+    if(this.state.image_status === true){
+        return(
+            <>
+            <div className="card  col-6 bg-light shadow-lg p-3 mb-5 bg-body rounded ">
+                        <div className="card-body  p-5">
+                            <h2 className="text-uppercase text-center mb-5"> image preview </h2>
+                            <img src={this.state.image} class="card-img-top" alt="..."/>
+                        </div>
+            </div>
+            </>
+        )
+    }
 }
     render(){
         let{name }=this.state
@@ -64,6 +80,7 @@ handleFormSubmit( event ) {
             {/* form */}
             <div className="container">
                 <div className="row">
+                    {/* form */}
                     <form className="mt-1 col-6">
                         <div className="card bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                             <div className="card-body  p-5">
@@ -94,6 +111,12 @@ handleFormSubmit( event ) {
                             </div>
                         </div>
                     </form>
+                    {/* End form */}
+                    {/* preview */}
+                    {
+                        this.preview()
+                    }
+                    {/* preview End */}
                 </div>
             </div>
             
