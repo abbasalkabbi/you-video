@@ -44,8 +44,7 @@ function Header(){
             {/* Right */}
             <div class="d-flex align-items-center">
                 {
-                    localStorage.getItem('id')?<Header_logined url_img={`${useContext(Context).assets}${localStorage.getItem('avatar')}`}/>
-
+                    localStorage.getItem('id')?<Header_logined url_img={`${useContext(Context).src_img}${localStorage.getItem('avatar')}`}/>
                     :<Header_guest/>
                 }
             </div>

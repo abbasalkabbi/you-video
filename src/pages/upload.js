@@ -3,6 +3,7 @@ import { useContext ,Component} from "react";
 import Context from "../Context";
 import Header from "../components/header";
 import axios from "axios";
+import { Navigate } from "react-router";
 class Upload extends Component{
     constructor(){
         super();
@@ -55,7 +56,10 @@ handleFormSubmit( event ) {
         headers: { 'content-type': 'application/json' },
         data: add_post
     })
-    .then(result => console.log(result)
+    .then(result => this.setState({
+        status:result.data.status,
+        message:result.data.message,
+    })
         )
 }
 preview(){
@@ -72,6 +76,20 @@ preview(){
         )
     }
 }
+error(){
+    if(this.state.status ===false){
+        return(
+            <div class="alert  alert-danger alert-dismissible fade show text-center" role="alert">
+            {this.state.message}
+            </div>
+        )
+    }else if(this.state.status ===true)
+    {
+        return(
+            <Navigate replace to="/" />
+            )
+    }
+}
     render(){
         let{name }=this.state
         return(
@@ -84,6 +102,8 @@ preview(){
                     <form className="mt-1 col-6">
                         <div className="card bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                             <div className="card-body  p-5">
+                            <h2 className="text-uppercase text-center mb-5"> Upload Video </h2>
+                            {this.error()}
                                 {/* name */}
                                 <div className="mb-3">
                                     <label for="fullname" className="form-label"> Name</label>

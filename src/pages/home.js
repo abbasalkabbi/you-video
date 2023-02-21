@@ -10,11 +10,14 @@ class Home extends Component{
         this.state={
             videos:[],
             finished:false,
-            assets:''
+            src_thumbe:'',
         }
     }
     // created method fetch data from api
     componentDidMount(){
+        this.setState({
+            src_thumbe:this.props.usecontext.src_thumbe,
+        })
         let link=this.props.usecontext.videos
         fetch(`${link}`)
         .then(response => response.json())
@@ -34,7 +37,7 @@ class Home extends Component{
             // console.log(this.state.videos[0].id_author)
             let data=
             this.state.videos.map(video => 
-                <Video_item id={video.id_video} name={video.name_video} img={`${this.state.assets}${video.url_img}`} date={video.date_video} view={video.views}/>
+                <Video_item id={video.id_video} name={video.name_video} img={`${this.state.src_thumbe}${video.url_img}`} date={video.date_video} view={video.views}/>
             )
             return data
         }

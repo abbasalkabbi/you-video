@@ -45,7 +45,7 @@ class Video_  extends Component{
     }
     render(){
         let {id_author,url_video,name_video,views,avatar,id_video,author,like_count,unlike_count}=this.props
-        let {islike,isunlike,assets}=this.state
+        let {islike,isunlike}=this.state
         return(
             <>
              {/* video */}

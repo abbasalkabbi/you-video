@@ -18,13 +18,21 @@ class Video extends Component{
             like_count:0,
             unlike:false,
             unlike_count:false,
-            assets:''
+            src_video:'',
+            src_thumbe:'',
+            src_img:'',
         }
 
     }
     // End constructor
     // Start componentDidMount
     componentDidMount(){
+        // get src 
+        this.setState({
+            src_video:this.props.usecontext.src_video,
+            src_thumbe:this.props.usecontext.src_thumbe,
+            src_img:this.props.usecontext.src_img,
+        })
         // get id video
         let  {id_video}=this.props.params;
         if(localStorage.getItem('id')){
@@ -44,7 +52,6 @@ class Video extends Component{
                     novideo:true,
                     finished:true,
                     message:json,
-                    assets:this.props.usecontext.assets
                 })
             }else{
             this.setState({
@@ -53,7 +60,6 @@ class Video extends Component{
                 novideo:false,
                 like_url:this.props.usecontext.like,
                 unlike_url:this.props.usecontext.unlike,
-                assets:this.props.usecontext.assets
             })
             }
         })
@@ -62,9 +68,9 @@ class Video extends Component{
     video(props){
         if(this.state.finished === true && this.state.novideo ==false){
             let {id_video,id_author,name_video,url_video,url_img,date_video,views,avatar,name,like,unlike,like_count,unlike_count}=this.state.video;
-            let {like_url,unlike_url,assets}=this.state;
+            let {like_url,unlike_url,src_img,src_thumbe,src_video}=this.state;
             return(
-                <Video_  id_author={id_author} unlike_count={unlike_count} like_count={like_count} like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={`${assets}${url_video}`} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={`${assets}${avatar}`}/>
+                <Video_  id_author={id_author} unlike_count={unlike_count} like_count={like_count} like_url={like_url} unlike_url={unlike_url}  id_video={id_video} url_video={`${src_video}${url_video}`} islike={like} isunlike={unlike} name_video={name_video}  views={views} author={name} avatar={`${src_img}${avatar}`}/>
             )
         }if(this.state.finished === true && this.state.novideo ==true){
             let {message}=this.state.message;

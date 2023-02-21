@@ -21,7 +21,10 @@ function App() {
     like:`${url_base}like.php`,
     unlike:`${url_base}unlike.php`,
     upload:`${url_base}upload.php`,
-    assets:`${url_base}assets/`
+    assets:`${url_base}assets/`,
+    src_img:`${url_base}img/`,
+    src_video:`${url_base}videos/`,
+    src_thumbe:`${url_base}thumbe/`,
     };
   return (
     <>

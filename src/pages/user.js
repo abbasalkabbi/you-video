@@ -18,13 +18,21 @@ class User extends Component{
             videos:'',
             finished_info:false,
             finished_videos:false,
-            assets:''
+            src_video:'',
+            src_thumbe:'',
+            src_img:'',
         }
     }
 
     // render
       // Start componentDidMount
     componentDidMount(){
+          // get src 
+        this.setState({
+            src_video:this.props.usecontext.src_video,
+            src_thumbe:this.props.usecontext.src_thumbe,
+            src_img:this.props.usecontext.src_img,
+        })
         // get id video
         let  {id_user}=this.props.params;
         var link_user=`${this.props.usecontext.user}?id_user=${id_user}`;
@@ -37,7 +45,6 @@ class User extends Component{
                 about:json[0].about,
                 date:json[0].date,
                 finished_info:true,
-                assets:this.props.usecontext.assets
             })
         })
         // get videos
@@ -67,11 +74,11 @@ class User extends Component{
         if(finished_videos === true || finished_info === true){
             let data=
             this.state.videos.map(video => 
-                <Video_item id={video.id_video} name={video.name_video} img={`${assets}${video.url_img}`} date={video.date_video} view={video.views}/>
+                <Video_item id={video.id_video} name={video.name_video} img={`${this.state.src_thumbe}${video.url_img}`} date={video.date_video} view={video.views}/>
             )
             return (<>
                     <div className="row">
-                    <User_card name={name} avatar={`${this.state.assets}${avatar}`} about={about} date={date}/>
+                    <User_card name={name} avatar={`${this.state.src_img}${avatar}`} about={about} date={date}/>
                     </div>
                     <div className="row ">
                     <h2 className=" text-center mb-5 text-bg-light p-3 fade show">Videos Of {this.state.name}</h2>
