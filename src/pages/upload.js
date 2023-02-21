@@ -13,6 +13,7 @@ class Upload extends Component{
             image:'',
             info:'',
             image_status:false,
+            ShowEroor:false,
         }
         this.video_uplaod = this.video_uplaod.bind(this);
         this.img_upload = this.img_upload.bind(this);
@@ -20,24 +21,57 @@ class Upload extends Component{
      // upload Video
     video_uplaod(e) {
     let files = e.target.files;
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(files[0]);
-    fileReader.onload = (event) => {
-        this.setState({
-            video: event.target.result,
-        })
-    }
+      // check is img
+        let file_type=files[0].type.split('/').pop().toLowerCase();
+        if(file_type == 'mp4'){
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(files[0]);
+            fileReader.onload = (event) => {
+                this.setState({
+                    video: event.target.result,
+                    message:'',
+                    ShowEroor:false,
+                })
+            }
+        }else{
+             // if not video
+            this.setState({
+                ShowEroor:true,
+                status:false,
+                message:'file is not Video',
+            })
+        }
+        
+    
 }
 // upload img
     img_upload(e){
-        let files = e.target.files;
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(files[0]);
-    fileReader.onload = (event) => {
-        console.log(fileReader.result)
+    let files = e.target.files;//get file
+    // check is img
+    let extension=['jpg','jpeg','png'];  //acceptable file types
+    let file_type=files[0].type.split('/').pop().toLowerCase(),
+        isSuccess = extension.indexOf(file_type) > -1;  //is extension in acceptable types
+    if(isSuccess){
+        // if is img
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+        fileReader.onload = (event) => {
+            console.log(fileReader)
+            this.setState({
+                image: event.target.result,
+                image_status:true,
+                message:'',
+                ShowEroor:false,
+            })
+        }
+    }else{
+        // if not img
         this.setState({
-            image: event.target.result,
-            image_status:true,
+            ShowEroor:true,
+            status:false,
+            message:'thumbe is not image',
+            image: '',
+            image_status:false,
         })
     }
     }
@@ -57,14 +91,16 @@ handleFormSubmit( event ) {
         headers: { 'content-type': 'application/json' },
         data: add_post
     })
-    .then(result => this.setState({
+    .then(result => {console.log(result.data)
+        this.setState({
         status:result.data.status,
+        ShowEroor:result.data.status?false:true,
         message:result.data.message,
     })
-        )
+    })
 }
 preview(){
-    if(this.state.image_status === true){
+    if(this.state.image_status === true ){
         return(
             <>
             <div className="card  col-6 bg-light shadow-lg p-3 mb-5 bg-body rounded ">
@@ -78,7 +114,7 @@ preview(){
     }
 }
 error(){
-    if(this.state.status ===false){
+    if(this.state.status ===false && this.state.ShowEroor === true){
         return(
             <div class="alert  alert-danger alert-dismissible fade show text-center" role="alert">
             {this.state.message}
