@@ -101,7 +101,7 @@ preview(){
     if(this.state.image_status === true ){
         return(
             <>
-            <div className="card  col-6 bg-light shadow-lg p-3 mb-5 bg-body rounded ">
+            <div className="card  col-sm-12 col-md-6 bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                         <div className="card-body  p-5">
                             <h2 className="text-uppercase text-center mb-5"> image preview </h2>
                             <img src={this.state.image} class="card-img-top" alt="..."/>
@@ -134,7 +134,7 @@ error(){
             <div className="container">
                 <div className="row">
                     {/* form */}
-                    <form className="mt-1 col-6">
+                    <form className="mt-1 col-sm-12 col-md-6">
                         <div className="card bg-light shadow-lg p-3 mb-5 bg-body rounded ">
                             <div className="card-body  p-5">
                             <h2 className="text-uppercase text-center mb-5"> Upload Video </h2>
