@@ -7,7 +7,7 @@ function Video_item(props){
 <div class="col-sm-6 mb-3 ">
                 
                 <a class="card" href={`/video/${props.id}`} style={{'text-decoration':'none' ,'color':'#000'}}>
-                <img src={`${props.img}`} class="card-img-top" alt="..."/>
+                <img src={`${props.img}`} class="card-img-top" alt="..." style={{'height':'300px'}}/>
                     <div class="card-body">
                         {/* info */}
                         <div className="info  d-flex justify-content-between">
