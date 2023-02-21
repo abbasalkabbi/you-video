@@ -6,6 +6,7 @@ $DIR_video = "./videos/";
 $DIR_thumbe = "./thumbe/";
 if($_POST){
     $name=$_POST['name'];
+    $id_author=$_POST['id_author'];
     $video=$_POST['video'];
     $image=$_POST['image'];
     // uplaod Video
@@ -35,7 +36,7 @@ if($_POST){
     if(!empty($name) & !empty($video) & !empty($image)){
         $url_video=upload_video($DIR_video);
         $url_img=upload_img($DIR_thumbe);
-        $insert=mysqli_query($conn,"INSERT INTO `videos` (`id_author`,`name_video`,`url_video`,`url_img`,`views`) VALUES (1,'$name','$url_video','$url_img',12)");
+        $insert=mysqli_query($conn,"INSERT INTO `videos` (`id_author`,`name_video`,`url_video`,`url_img`,`views`) VALUES ($id_author,'$name','$url_video','$url_img',12)");
         if($insert){
             echo json_encode(['status'=>true,'message'=>'Upload']);
         }

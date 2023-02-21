@@ -49,6 +49,7 @@ handleFormSubmit( event ) {
         name:this.state.name,
         video: this.state.video,
         image: this.state.image,
+        id_author: localStorage.getItem('id'),
     }
     axios({
         method: 'post',

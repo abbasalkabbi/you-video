@@ -39,7 +39,14 @@ function Header_logined(props){
                                 My Profile
                             </NavLink>
                         </li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><li>
+                            <NavLink
+                            to='upload'
+                            className='dropdown-item'
+                            >
+                                Upload
+                            </NavLink>
+                        </li></li>
                         <li><hr class="dropdown-divider"/></li>
                         <li ><button class="dropdown-item " onClick={()=>logout()}>Log out</button></li>
                     </ul>
