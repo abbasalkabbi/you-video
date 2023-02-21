@@ -56,7 +56,6 @@ class Upload extends Component{
         let fileReader = new FileReader();
         fileReader.readAsDataURL(files[0]);
         fileReader.onload = (event) => {
-            console.log(fileReader)
             this.setState({
                 image: event.target.result,
                 image_status:true,
@@ -78,7 +77,6 @@ class Upload extends Component{
 handleFormSubmit( event ) {
     event.preventDefault();
     const upload_url=this.props.usecontext.upload
-    console.log(upload_url)
     let add_post={
         name:this.state.name,
         video: this.state.video,
@@ -91,7 +89,7 @@ handleFormSubmit( event ) {
         headers: { 'content-type': 'application/json' },
         data: add_post
     })
-    .then(result => {console.log(result.data)
+    .then(result => {
         this.setState({
         status:result.data.status,
         ShowEroor:result.data.status?false:true,
