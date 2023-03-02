@@ -39,9 +39,17 @@ function Header_logined(props){
                                 My Profile
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                            to='/Settings'
+                            className='dropdown-item'
+                            >
+                                Settings
+                            </NavLink>
+                        </li>
                         <li><li>
                             <NavLink
-                            to='upload'
+                            to='/upload'
                             className='dropdown-item'
                             >
                                 Upload

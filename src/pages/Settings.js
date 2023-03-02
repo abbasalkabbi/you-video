@@ -10,6 +10,9 @@ class Settings extends Component{
         }
     }
     // end constructor
+    // Start componentDidMount
+    componentDidMount(){
+    }
     // render
     render(){
         return(
