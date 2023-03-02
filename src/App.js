@@ -9,6 +9,7 @@ import Video from './pages/video';
 import User from './pages/user';
 import Register from './pages/register';
 import Upload from './pages/upload';
+import Settings from './pages/Settings';
 function App() {
   const url_base='http://localhost/you-video/api/'
   const url = {
@@ -35,7 +36,8 @@ function App() {
             <Route path='/singin' element={<Singn_in />} />
             <Route path='/register' element={<Register/>} />
             <Route path="video/:id_video" element={<Video />} />
-            <Route path="upload" element={<Upload/>} />
+            <Route path="upload" element={<Upload/>} /> 
+            <Route path="settings" element={<Settings/>} /> 
             <Route path="user/:id_user" element={<User />} />
           </Routes>
         </BrowserRouter>
