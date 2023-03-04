@@ -26,6 +26,8 @@ function App() {
     src_img:`${url_base}img/`,
     src_video:`${url_base}videos/`,
     src_thumbe:`${url_base}thumbe/`,
+    ChangeName:`${url_base}ChangeName.php`,
+    ChangeAbout:`${url_base}ChangeAbout.php`,
     };
   return (
     <>
