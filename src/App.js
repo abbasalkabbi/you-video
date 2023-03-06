@@ -28,6 +28,7 @@ function App() {
     src_thumbe:`${url_base}thumbe/`,
     ChangeName:`${url_base}ChangeName.php`,
     ChangeAbout:`${url_base}ChangeAbout.php`,
+    ChangeImage:`${url_base}ChangeImage.php`,
     };
   return (
     <>

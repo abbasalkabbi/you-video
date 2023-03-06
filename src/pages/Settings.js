@@ -13,7 +13,9 @@ class Settings extends Component{
             avatar:'',
             about:'',
             NameClass:'',
+            imageClass:'',
         }
+        this.img_upload = this.img_upload.bind(this);
     }
     // end constructor
     // Start componentDidMount
@@ -103,9 +105,82 @@ class Settings extends Component{
         })
     }
     // ChangeAbout(e) End
+    // upload img
+    img_upload(e){
+        let files = e.target.files;//get file
+        // check is img
+        let extension=['jpg','jpeg','png'];  //acceptable file types
+        let file_type=files[0].type.split('/').pop().toLowerCase(),
+            isSuccess = extension.indexOf(file_type) > -1;  //is extension in acceptable types
+        if(isSuccess){
+            // if is img
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(files[0]);
+            fileReader.onload = (event) => {
+                this.setState({
+                    image: event.target.result,
+                    image_status:true,
+                    message:'',
+                    ShowEroor:false,
+                    imageClass:'is-valid',
+                })
+            }
+        }else{
+            // if not img
+            this.setState({
+                ShowEroor:true,
+                status:false,
+                message:'thumbe is not image',
+                image: '',
+                image_status:false,
+                imageClass:'is-invalid',
+            })
+        }
+        }
+    preview(){
+            if(this.state.image_status === true ){
+                return(
+                    <>
+                    <div className="card  col-sm-12 col-md-6 bg-light shadow-lg p-3 mb-5 bg-body rounded ">
+                                <div className="card-body  p-5">
+                                    <h2 className="text-uppercase text-center mb-5"> image preview </h2>
+                                    <img src={this.state.image} class="card-img-top" alt="..."/>
+                                </div>
+                    </div>
+                    </>
+                )
+            }
+        }
+        ChangeImage(event){
+        event.preventDefault();
+        let url=this.props.usecontext.ChangeImage
+        let data={
+            image: this.state.image,
+            id: this.state.id,
+        }
+        axios({
+            method: 'post',
+            url: `${url}`,
+            headers: { 'content-type': 'application/json' },
+            data: data
+        })
+        .then(result =>{ console.log(result)
+            if(result.data.status ==true){
+                localStorage.setItem('avatar',result.data.avatar)
+                this.setState({
+                    imageClass:'is-valid',
+                })
+            }else{
+                this.setState({
+                    imageClass:'is-invalid',
+                })
+            }
+        })
+        }
+        // end img
     // render
     render(){
-        let {name,NameClass,about,AboutClass}=this.state
+        let {name,NameClass,about,AboutClass,imageClass}=this.state
         return(
             <>
             <Header/>
@@ -132,7 +207,7 @@ class Settings extends Component{
                                 </div>
                     </form>
                     {/* End name */}
-                    {/* name */}
+                    {/* About */}
                     <form className="mt-1 col-sm-12 col-md-12 ">
                         
                         <div className="mb-3 col-12 row ">
@@ -145,7 +220,24 @@ class Settings extends Component{
                                     {/* END save Button */}
                                 </div>
                     </form>
-                    {/* End name */}
+                    {/* End About */}
+                     {/* image */}
+                    <form className="mt-1 col-sm-12 col-md-12 ">
+                        
+                        <div className="mb-3 col-12 row ">
+                                    <label for="fullname" className="form-label "> image</label>
+                                    <input  className={`form-control  col-sm-12 col-md-8 ${imageClass}`} type="file" id="formFile"  onChange={this.img_upload}/>
+                                     {/* save Button */}
+                                    <div class="text-center text-lg-end mt-2  ">
+                                                <button type="submit" onClick={e => this.ChangeImage(e)} class="btn btn-primary">Save</button>
+                                    </div>
+                                    {/* END save Button */}
+                                </div>
+                    </form>
+                    {
+                        this.preview()
+                    }
+                    {/* End image */}
                 </div>
             </div>
             {/* container End */}
