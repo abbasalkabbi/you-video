@@ -11,7 +11,7 @@ import Register from './pages/register';
 import Upload from './pages/upload';
 import Settings from './pages/Settings';
 function App() {
-  const url_base='http://localhost/you-video/api/'
+  const url_base='https://you-videos.000webhostapp.com/api/'
   const url = {
     videos:`${url_base}videos.php`,
     video:`${url_base}video.php`,
