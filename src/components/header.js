@@ -13,7 +13,7 @@ function Header(){
     {/* container-fluid */}
     <div class="container-fluid">
         {/* a */}
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">You-Video</a>
         {/* a end */}
         {/* button */}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,12 +32,6 @@ function Header(){
                         Home
                     </NavLink>
                     {/* nav-link active" */}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="#">Pricing</a>
                 </li>
             </ul>
             {/* ul navbar-nav  End  <!-- Left links -->*/}
